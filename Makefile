@@ -73,7 +73,7 @@ update-npm-requirements: ## update NPM requrements
 	cp ./node_modules/backgrid/lib/backgrid*.css $(STATIC_CSS)/lib/backgrid/
 
 static: ## Webpack JavaScript and SASS source files
-	npm run dev && npm run build
+	npm run build
 
 ################
 #Translations Handling
@@ -138,11 +138,13 @@ install-osx-requirements: ## Install OSX specific requirements using Homebrew
 	brew install gettext
 	brew link gettext --force
 
+
 ##################
 #Devstack commands
 ##################
 
 install-local-ora: ## installs your local ORA2 code into the LMS and Studio python virtualenvs
+	make static
 	docker exec -t edx.devstack.lms bash -c '. /edx/app/edxapp/venvs/edxapp/bin/activate && cd /edx/app/edxapp/edx-platform && pip uninstall -y ora2 && pip install -e /edx/src/edx-ora2 && pip freeze | grep ora2'
 	docker exec -t edx.devstack.studio bash -c '. /edx/app/edxapp/venvs/edxapp/bin/activate && cd /edx/app/edxapp/edx-platform && pip uninstall -y ora2 && pip install -e /edx/src/edx-ora2 && pip freeze | grep ora2'
 
