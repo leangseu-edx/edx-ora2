@@ -55,7 +55,7 @@ jobs:
       
       - name: update translations
         env:
-          - TX_TOKEN: ${{ secrets.EDX_TRANSIFEX_BOT_GITHUB_TOKEN }}
+          TX_TOKEN: ${{ secrets.EDX_TRANSIFEX_BOT_GITHUB_TOKEN }}
         run: make pull_translations
 
       - name: Release
