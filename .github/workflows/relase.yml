@@ -9,6 +9,13 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+        python-version: ['3.8']
+        node-version: [16]
+        toxenv: [build]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,12 +24,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-
-      - name: Install node packages
-        run: npm ci
-
-      - name: Build js
-        run: npm run build
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -35,17 +36,16 @@ jobs:
       - name: Install CI Dependencies
         run: pip install -r requirements/ci.txt
 
-      - name: Build python package
-        run: python setup.py sdist bdist_wheel
-
-      - name: Install Transifex client
-        run: make install_transifex_client
-
       - name: Install GNU gettext
         run: sudo apt-get install gettext
-      
-      - name: update translations
-        run: make pull_translations
+
+      - name: Install Node Dependencies
+        env:
+          TOXENV: ${{ matrix.toxenv }}
+        run: tox
+
+      - name: Build python package
+        run: python setup.py sdist bdist_wheel
 
       - name: Release
         env:
