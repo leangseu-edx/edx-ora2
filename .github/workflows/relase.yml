@@ -22,12 +22,15 @@ jobs:
         run: npm ci
 
       - name: Build js
-        run: npm run build      
+        run: npm run build
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
+      
+      - name: Install pip
+        run: pip install -r requirements/pip.txt
 
       - name: Build python package
         run: python setup.py sdist bdist_wheel
