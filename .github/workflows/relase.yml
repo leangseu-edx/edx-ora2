@@ -43,14 +43,11 @@ jobs:
           cd
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
           cat $GITHUB_PATH
-          echo "$pwd" >> $GITHUB_PATH
+          echo $(pwd) >> $GITHUB_PATH
           cat $GITHUB_PATH
-          ls
 
       - name: test
         run: |
-          pwd
-          ls
           tx --help
 
       - name: Install GNU gettext
