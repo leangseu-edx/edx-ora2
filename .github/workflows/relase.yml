@@ -29,8 +29,11 @@ jobs:
         with:
           python-version: 3.8
       
-      - name: Install pip
+      - name: Install pip Dependencies
         run: pip install -r requirements/pip.txt
+
+      - name: Install CI Dependencies
+        run: pip install -r requirements/ci.txt
 
       - name: Build python package
         run: python setup.py sdist bdist_wheel
