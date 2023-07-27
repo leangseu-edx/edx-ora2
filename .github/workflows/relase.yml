@@ -54,6 +54,8 @@ jobs:
         run: sudo apt-get install gettext
       
       - name: update translations
+        env:
+          - TX_TOKEN: ${{ secrets.EDX_TRANSIFEX_BOT_GITHUB_TOKEN }}
         run: make pull_translations
 
       - name: Release
