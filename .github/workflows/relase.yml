@@ -38,28 +38,24 @@ jobs:
       - name: Build python package
         run: python setup.py sdist bdist_wheel
 
-      - name: Install Transifex client
-        run: |
-          cd
-          curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
-          cat $GITHUB_PATH
-          echo $(pwd) >> $GITHUB_PATH
-          cat $GITHUB_PATH
+      # - name: Install Transifex client
+      #   run: |
+      #     cd
+      #     curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
+      #     cat $GITHUB_PATH
+      #     echo $(pwd) >> $GITHUB_PATH
+      #     cat $GITHUB_PATH
 
-      - name: test
-        run: |
-          tx --help
-
-      - name: Install GNU gettext
-        run: sudo apt-get install gettext
+      # - name: Install GNU gettext
+      #   run: sudo apt-get install gettext
       
-      - name: update translations
-        env:
-          TX_TOKEN: ${{ secrets.EDX_TRANSIFEX_BOT_GITHUB_TOKEN }}
-        run: |
-          make pull_translations
-          make check_translations_up_to_date
-          make validate_translations
+      # - name: update translations
+      #   env:
+      #     TX_TOKEN: ${{ secrets.EDX_TRANSIFEX_BOT_GITHUB_TOKEN }}
+      #   run: |
+      #     make pull_translations
+      #     make check_translations_up_to_date
+      #     make validate_translations
 
       - name: Release
         env:
