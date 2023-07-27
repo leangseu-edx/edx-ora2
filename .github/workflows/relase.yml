@@ -3,7 +3,7 @@ name: Release
 on: 
   push:
     branches: 
-      - lk/semantic-workflow
+      - master
 
 jobs:
   release:

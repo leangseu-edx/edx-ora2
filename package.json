@@ -58,6 +58,6 @@
     "lint-fix": "fedx-scripts eslint --ext .jsx,.js openassessment/xblock/static/js/src/ --fix"
   },
   "release": {
-    "branches": ["lk/semantic-workflow"]
+    "branches": ["master"]
   }
 }
