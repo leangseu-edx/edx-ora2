@@ -40,10 +40,9 @@ jobs:
 
       - name: Install Transifex client
         run: |
-          echo $GITHUB_PATH
-          cd
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
           echo pwd >> $GITHUB_PATH
+          ls
 
       - name: test
         run: |
