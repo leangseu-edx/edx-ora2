@@ -56,5 +56,8 @@
     "test": "./node_modules/karma/bin/karma start --reporters spec,coverage",
     "lint": "fedx-scripts eslint --ext .jsx,.js openassessment/xblock/static/js/src/",
     "lint-fix": "fedx-scripts eslint --ext .jsx,.js openassessment/xblock/static/js/src/ --fix"
+  },
+  "release": {
+    "branches": ["lk/semantic-workflow"]
   }
 }
